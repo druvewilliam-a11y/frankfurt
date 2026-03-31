@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>von Halberg Family Office | Private Wealth Management – Frankfurt am Main</title>
-  <meta name="description" content="von Halberg Family Office is a discreet, independent private family office based in Frankfurt am Main, providing tailored investment management and family coordination services." />
+  <title>von Halberg Family Office | Private Vermögensverwaltung – Frankfurt am Main</title>
+  <meta name="description" content="Das von Halberg Family Office ist ein diskretes, unabhängiges privates Family Office mit Sitz in Frankfurt am Main." />
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="shortcut icon" href="favicon.svg" />
@@ -71,6 +71,25 @@
     .nav-link:hover        { color: #D4AF77; }
     .nav-link:hover::after { width: 100%; }
 
+    /* ── Language toggle ───────────────────────────── */
+    #lang-btn {
+      font-size: 0.63rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(248, 249, 250, 0.40);
+      font-weight: 400;
+      border-left: 1px solid rgba(212, 175, 119, 0.20);
+      padding-left: 1.1rem;
+      margin-left: 0.4rem;
+      background: none;
+      border-top: none;
+      border-right: none;
+      border-bottom: none;
+      cursor: pointer;
+      transition: color 0.25s;
+    }
+    #lang-btn:hover { color: #D4AF77; }
+
     /* ── Hero overlay ──────────────────────────────── */
     .hero-overlay {
       background: linear-gradient(
@@ -132,7 +151,7 @@
       transition: max-height 0.35s ease, opacity 0.35s ease;
     }
     #mob-menu.is-open {
-      max-height: 280px;
+      max-height: 320px;
       opacity: 1;
     }
 
@@ -171,16 +190,19 @@
           </span>
         </a>
 
-        <!-- Desktop links -->
-        <ul class="hidden md:flex items-center gap-9">
-          <li><a href="#home"    class="nav-link">Home</a></li>
-          <li><a href="#about"   class="nav-link">About</a></li>
-          <li><a href="#team"    class="nav-link">Team</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
+        <!-- Desktop links + lang toggle -->
+        <div class="hidden md:flex items-center gap-9">
+          <ul class="flex items-center gap-9">
+            <li><a href="#home"    class="nav-link" data-i18n="nav.home">Startseite</a></li>
+            <li><a href="#about"   class="nav-link" data-i18n="nav.about">Über uns</a></li>
+            <li><a href="#team"    class="nav-link" data-i18n="nav.team">Team</a></li>
+            <li><a href="#contact" class="nav-link" data-i18n="nav.contact">Kontakt</a></li>
+          </ul>
+          <button id="lang-btn" aria-label="Switch language">EN</button>
+        </div>
 
         <!-- Hamburger -->
-        <button id="mob-toggle" aria-label="Open menu"
+        <button id="mob-toggle" aria-label="Menü öffnen"
           class="md:hidden p-2 flex flex-col gap-[5px] group">
           <span id="hb1" class="block w-[18px] h-px bg-white/70 transition-all group-hover:bg-gold"></span>
           <span id="hb2" class="block w-[18px] h-px bg-white/70 transition-all group-hover:bg-gold"></span>
@@ -193,11 +215,14 @@
     <!-- Mobile dropdown -->
     <div id="mob-menu" class="md:hidden bg-navy border-t border-white/5">
       <ul class="px-6 py-5 space-y-5">
-        <li><a href="#home"    class="nav-link block" onclick="closeMob()">Home</a></li>
-        <li><a href="#about"   class="nav-link block" onclick="closeMob()">About</a></li>
-        <li><a href="#team"    class="nav-link block" onclick="closeMob()">Team</a></li>
-        <li><a href="#contact" class="nav-link block" onclick="closeMob()">Contact</a></li>
+        <li><a href="#home"    class="nav-link block" data-i18n="nav.home"    onclick="closeMob()">Startseite</a></li>
+        <li><a href="#about"   class="nav-link block" data-i18n="nav.about"   onclick="closeMob()">Über uns</a></li>
+        <li><a href="#team"    class="nav-link block" data-i18n="nav.team"    onclick="closeMob()">Team</a></li>
+        <li><a href="#contact" class="nav-link block" data-i18n="nav.contact" onclick="closeMob()">Kontakt</a></li>
       </ul>
+      <div class="px-6 pb-5 border-t border-white/5 pt-4">
+        <button id="lang-btn-mob" class="text-white/35 text-[0.63rem] tracking-[0.22em] uppercase bg-none border-none cursor-pointer hover:text-gold transition-colors">EN</button>
+      </div>
     </div>
   </nav>
 
@@ -211,7 +236,8 @@
     <div class="absolute inset-0 bg-navy">
       <img
         src="https://images.unsplash.com/photo-1534430480872-3498386e7856?auto=format&fit=crop&w=1920&q=80"
-        alt="Frankfurt am Main skyline at dusk"
+        data-i18n-alt="alt.hero"
+        alt="Frankfurter Skyline in der Abenddämmerung"
         class="w-full h-full object-cover opacity-[0.42]"
         loading="eager"
         decoding="async"
@@ -232,14 +258,17 @@
 
         <div class="g-rule mb-7"></div>
 
-        <p class="text-white/65 font-light text-[0.9rem] sm:text-base tracking-wide leading-relaxed mb-12 max-w-sm">
-          Private multi-generational wealth management since 2015
+        <p class="text-white/65 font-light text-[0.9rem] sm:text-base tracking-wide leading-relaxed mb-12 max-w-sm"
+           data-i18n="hero.tagline">
+          Privates generationenübergreifendes Vermögensmanagement seit 2015
         </p>
 
         <!-- AUM -->
         <div class="inline-block border-t border-gold/30 pt-5 pr-12 hover:border-gold/60 transition-colors duration-300">
-          <p class="text-gold/55 text-[0.58rem] tracking-[0.24em] uppercase mb-2">Assets Under Management</p>
-          <p class="text-white font-light text-[1.7rem] sm:text-[2rem] tracking-[0.03em]">€180 million</p>
+          <p class="text-gold/55 text-[0.58rem] tracking-[0.24em] uppercase mb-2"
+             data-i18n="hero.aum.label">Verwaltetes Vermögen</p>
+          <p class="text-white font-light text-[1.7rem] sm:text-[2rem] tracking-[0.03em]"
+             data-i18n="hero.aum.value">€180 Millionen</p>
         </div>
 
       </div>
@@ -247,7 +276,8 @@
 
     <!-- Scroll indicator -->
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-30 pointer-events-none">
-      <span class="text-white text-[0.55rem] tracking-[0.28em] uppercase">Scroll</span>
+      <span class="text-white text-[0.55rem] tracking-[0.28em] uppercase"
+            data-i18n="hero.scroll">Scrollen</span>
       <div class="w-px h-8 bg-white/50"></div>
     </div>
 
@@ -264,28 +294,31 @@
       <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-20 lg:mb-28">
 
         <div class="lg:col-span-4 reveal">
-          <p class="eyebrow mb-5">About</p>
+          <p class="eyebrow mb-5" data-i18n="about.eyebrow">Über uns</p>
           <div class="g-rule mb-6"></div>
-          <h2 class="text-navy font-light text-[1.6rem] lg:text-[2rem] leading-snug tracking-wide">
-            Discretion.<br />Independence.<br />Continuity.
+          <h2 class="text-navy font-light text-[1.6rem] lg:text-[2rem] leading-snug tracking-wide"
+              data-i18n-html="about.headline">
+            Diskretion.<br />Unabhängigkeit.<br />Kontinuität.
           </h2>
         </div>
 
         <div class="lg:col-span-8 reveal space-y-6 reveal-d1">
 
-          <p class="text-navy/70 font-light text-[0.975rem] lg:text-[1.05rem] leading-[1.85]">
-            The von Halberg Family Office is a discreet, independent private family office based in Frankfurt am Main. We provide tailored investment management, portfolio reporting, and family coordination services to a small number of multi-generational families.
+          <p class="text-navy/70 font-light text-[0.975rem] lg:text-[1.05rem] leading-[1.85]"
+             data-i18n="about.p1">
+            Das von Halberg Family Office ist ein diskretes, unabhängiges privates Family Office mit Sitz in Frankfurt am Main. Wir bieten maßgeschneiderte Vermögensverwaltung, Portfolio-Reporting und familieninterne Koordinationsleistungen für eine ausgewählte Anzahl generationenübergreifender Familien an.
           </p>
 
-          <p class="text-navy/70 font-light text-[0.975rem] lg:text-[1.05rem] leading-[1.85]">
-            Our focus is long-term capital preservation with a conservative risk profile.
+          <p class="text-navy/70 font-light text-[0.975rem] lg:text-[1.05rem] leading-[1.85]"
+             data-i18n="about.p2">
+            Unser Fokus liegt auf dem langfristigen Kapitalerhalt mit einem konservativen Risikoprofil.
           </p>
 
           <hr class="g-divider" />
 
           <p class="text-navy/70 font-light text-[0.975rem] lg:text-[1.05rem] leading-[1.85]">
-            <em class="text-gold-dim not-italic" style="color:#8c7143; font-style: italic; font-weight: 300;">The von Halberg Family Office maintains a deliberately low digital profile to protect the privacy of our client families.</em>
-            <span class="text-navy/70"> We do not engage in public marketing or active social-media activity.</span>
+            <em data-i18n="about.p3.italic"
+                style="color:#8c7143; font-style: italic; font-weight: 300;">Das von Halberg Family Office pflegt bewusst ein zurückhaltendes digitales Profil, um die Privatsphäre unserer Mandantenfamilien zu schützen.</em><span class="text-navy/70" data-i18n="about.p3.rest"> Wir betreiben keine öffentliche Vermarktung und sind in sozialen Medien nicht aktiv.</span>
           </p>
 
         </div>
@@ -296,25 +329,31 @@
 
         <div class="pillar bg-white px-8 py-10 reveal">
           <p class="text-gold text-[0.58rem] tracking-[0.28em] uppercase mb-3">01</p>
-          <h3 class="text-navy font-light text-[1.05rem] tracking-wide mb-3">Capital Preservation</h3>
-          <p class="text-grey-text font-light text-[0.85rem] leading-relaxed">
-            Protecting and growing wealth across generations with a conservative, long-term orientation.
+          <h3 class="text-navy font-light text-[1.05rem] tracking-wide mb-3"
+              data-i18n="about.pillar1.title">Kapitalerhalt</h3>
+          <p class="text-grey-text font-light text-[0.85rem] leading-relaxed"
+             data-i18n="about.pillar1.body">
+            Schutz und Mehrung des Familienvermögens über Generationen mit einer konservativen, langfristigen Ausrichtung.
           </p>
         </div>
 
         <div class="pillar bg-white px-8 py-10 reveal reveal-d1">
           <p class="text-gold text-[0.58rem] tracking-[0.28em] uppercase mb-3">02</p>
-          <h3 class="text-navy font-light text-[1.05rem] tracking-wide mb-3">Independence</h3>
-          <p class="text-grey-text font-light text-[0.85rem] leading-relaxed">
-            Fully independent advisory — no proprietary products, no placement fees, no conflicts of interest.
+          <h3 class="text-navy font-light text-[1.05rem] tracking-wide mb-3"
+              data-i18n="about.pillar2.title">Unabhängigkeit</h3>
+          <p class="text-grey-text font-light text-[0.85rem] leading-relaxed"
+             data-i18n="about.pillar2.body">
+            Vollständig unabhängige Beratung – keine Eigenprodukte, keine Vertriebsprovisionen, keine Interessenkonflikte.
           </p>
         </div>
 
         <div class="pillar bg-white px-8 py-10 reveal reveal-d2">
           <p class="text-gold text-[0.58rem] tracking-[0.28em] uppercase mb-3">03</p>
-          <h3 class="text-navy font-light text-[1.05rem] tracking-wide mb-3">Privacy by Design</h3>
-          <p class="text-grey-text font-light text-[0.85rem] leading-relaxed">
-            Client identities and holdings are never disclosed. Relationships built on absolute confidentiality.
+          <h3 class="text-navy font-light text-[1.05rem] tracking-wide mb-3"
+              data-i18n="about.pillar3.title">Diskretion als Prinzip</h3>
+          <p class="text-grey-text font-light text-[0.85rem] leading-relaxed"
+             data-i18n="about.pillar3.body">
+            Identitäten und Portfolios unserer Mandanten werden zu keiner Zeit offengelegt. Unsere Beziehungen beruhen auf absoluter Vertraulichkeit.
           </p>
         </div>
 
@@ -331,10 +370,11 @@
     <div class="max-w-6xl mx-auto px-6 lg:px-10">
 
       <div class="mb-14 reveal">
-        <p class="eyebrow mb-5">Team</p>
+        <p class="eyebrow mb-5" data-i18n="team.eyebrow">Team</p>
         <div class="g-rule mb-6"></div>
-        <h2 class="text-white font-light text-[1.6rem] lg:text-[2rem] tracking-wide leading-snug">
-          Leadership
+        <h2 class="text-white font-light text-[1.6rem] lg:text-[2rem] tracking-wide leading-snug"
+            data-i18n="team.heading">
+          Führung
         </h2>
       </div>
 
@@ -349,14 +389,18 @@
 
             <!-- Headshot -->
             <div class="flex-shrink-0 w-[4.5rem] h-[4.5rem] rounded-full overflow-hidden border border-gold/30 hover:border-gold/60 transition-colors duration-300">
-              <img src="james-thompson.jpg" alt="James Thompson" class="w-full h-full object-cover object-top" />
+              <img src="james-thompson.jpg"
+                   data-i18n-alt="alt.jt"
+                   alt="James Thompson"
+                   class="w-full h-full object-cover object-top" />
             </div>
 
             <div>
               <h3 class="text-white font-light text-[1.15rem] tracking-wide mb-1">James Thompson</h3>
-              <p class="eyebrow mb-5">Managing Director</p>
-              <p class="text-white/55 font-light text-[0.875rem] leading-relaxed max-w-md">
-                American expat with over 8 years in private wealth management. Relocated to Frankfurt in 2022.
+              <p class="eyebrow mb-5" data-i18n="team.jt.title">Geschäftsführer</p>
+              <p class="text-white/55 font-light text-[0.875rem] leading-relaxed max-w-md"
+                 data-i18n="team.jt.bio">
+                Amerikanischer Expat mit über 8 Jahren Erfahrung in der privaten Vermögensverwaltung. Seit 2022 in Frankfurt ansässig.
               </p>
             </div>
 
@@ -379,10 +423,11 @@
 
         <!-- Left -->
         <div class="lg:col-span-4 reveal">
-          <p class="eyebrow mb-5">Contact</p>
+          <p class="eyebrow mb-5" data-i18n="contact.eyebrow">Kontakt</p>
           <div class="g-rule mb-6"></div>
-          <h2 class="text-navy font-light text-[1.6rem] lg:text-[2rem] tracking-wide leading-snug max-w-[14rem]">
-            Enquiries by appointment only.
+          <h2 class="text-navy font-light text-[1.6rem] lg:text-[2rem] tracking-wide leading-snug max-w-[16rem]"
+              data-i18n-html="contact.heading">
+            Anfragen ausschließlich<br />nach Vereinbarung.
           </h2>
         </div>
 
@@ -390,23 +435,23 @@
         <div class="lg:col-span-8 reveal reveal-d1 space-y-9">
 
           <div>
-            <p class="eyebrow mb-2">Office</p>
-            <p class="text-navy font-light text-[0.95rem]">Frankfurt am Main, Germany</p>
+            <p class="eyebrow mb-2" data-i18n="contact.office.label">Büro</p>
+            <p class="text-navy font-light text-[0.95rem]"
+               data-i18n="contact.office.value">Frankfurt am Main, Deutschland</p>
           </div>
 
           <hr class="g-divider" />
 
           <div>
-            <p class="eyebrow mb-2">Telephone</p>
-            <p class="text-navy/40 font-light text-[0.95rem] italic">
-              +49 [placeholder – will be added later]
-            </p>
+            <p class="eyebrow mb-2" data-i18n="contact.tel.label">Telefon</p>
+            <p class="text-navy/40 font-light text-[0.95rem] italic"
+               data-i18n="contact.tel.value">+49 [wird ergänzt]</p>
           </div>
 
           <hr class="g-divider" />
 
           <div>
-            <p class="eyebrow mb-2">Electronic Mail</p>
+            <p class="eyebrow mb-2" data-i18n="contact.email.label">E-Mail</p>
             <a href="mailto:info@vonhalbergfamilyoffice.de"
                class="c-link font-light text-[0.95rem] inline-block text-white/70">
               info@vonhalbergfamilyoffice.de
@@ -415,8 +460,9 @@
 
           <hr class="g-divider" />
 
-          <p class="text-grey-text font-light text-[0.85rem] leading-relaxed max-w-md">
-            We respond exclusively to qualified enquiries from prospective principal families and their advisers. We do not accept unsolicited third-party introductions or product solicitations.
+          <p class="text-grey-text font-light text-[0.85rem] leading-relaxed max-w-md"
+             data-i18n="contact.disclaimer">
+            Wir antworten ausschließlich auf qualifizierte Anfragen von potenziellen Mandantenfamilien und deren Beratern. Unaufgeforderte Kontaktaufnahmen oder Produktanfragen werden nicht berücksichtigt.
           </p>
 
         </div>
@@ -432,12 +478,14 @@
   <footer class="bg-navy border-t border-white/[0.06] py-8">
     <div class="max-w-6xl mx-auto px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-3">
 
-      <p class="text-white/25 font-light text-[0.7rem] tracking-widest">
-        &copy; 2026 von Halberg Family Office. All rights reserved.
+      <p class="text-white/25 font-light text-[0.7rem] tracking-widest"
+         data-i18n="footer.copy">
+        &copy; 2026 von Halberg Family Office. Alle Rechte vorbehalten.
       </p>
 
-      <p class="text-gold/25 font-light text-[0.58rem] tracking-[0.22em] uppercase">
-        Frankfurt am Main &mdash; Est. 2015
+      <p class="text-gold/25 font-light text-[0.58rem] tracking-[0.22em] uppercase"
+         data-i18n="footer.est">
+        Frankfurt am Main &mdash; Gegr. 2015
       </p>
 
     </div>
@@ -448,13 +496,154 @@
        SCRIPTS
   ═══════════════════════════════════════════════════════ -->
   <script>
-    // ── Navbar scroll behaviour
+    // ─────────────────────────────────────────────────────
+    // i18n strings
+    // ─────────────────────────────────────────────────────
+    const strings = {
+      de: {
+        'nav.home':            'Startseite',
+        'nav.about':           'Über uns',
+        'nav.team':            'Team',
+        'nav.contact':         'Kontakt',
+        'hero.tagline':        'Privates generationenübergreifendes Vermögensmanagement seit 2015',
+        'hero.aum.label':      'Verwaltetes Vermögen',
+        'hero.aum.value':      '€180 Millionen',
+        'hero.scroll':         'Scrollen',
+        'about.eyebrow':       'Über uns',
+        'about.headline':      'Diskretion.<br />Unabhängigkeit.<br />Kontinuität.',
+        'about.p1':            'Das von Halberg Family Office ist ein diskretes, unabhängiges privates Family Office mit Sitz in Frankfurt am Main. Wir bieten maßgeschneiderte Vermögensverwaltung, Portfolio-Reporting und familieninterne Koordinationsleistungen für eine ausgewählte Anzahl generationenübergreifender Familien an.',
+        'about.p2':            'Unser Fokus liegt auf dem langfristigen Kapitalerhalt mit einem konservativen Risikoprofil.',
+        'about.p3.italic':     'Das von Halberg Family Office pflegt bewusst ein zurückhaltendes digitales Profil, um die Privatsphäre unserer Mandantenfamilien zu schützen.',
+        'about.p3.rest':       ' Wir betreiben keine öffentliche Vermarktung und sind in sozialen Medien nicht aktiv.',
+        'about.pillar1.title': 'Kapitalerhalt',
+        'about.pillar1.body':  'Schutz und Mehrung des Familienvermögens über Generationen mit einer konservativen, langfristigen Ausrichtung.',
+        'about.pillar2.title': 'Unabhängigkeit',
+        'about.pillar2.body':  'Vollständig unabhängige Beratung – keine Eigenprodukte, keine Vertriebsprovisionen, keine Interessenkonflikte.',
+        'about.pillar3.title': 'Diskretion als Prinzip',
+        'about.pillar3.body':  'Identitäten und Portfolios unserer Mandanten werden zu keiner Zeit offengelegt. Unsere Beziehungen beruhen auf absoluter Vertraulichkeit.',
+        'team.eyebrow':        'Team',
+        'team.heading':        'Führung',
+        'team.jt.title':       'Geschäftsführer',
+        'team.jt.bio':         'Amerikanischer Expat mit über 8 Jahren Erfahrung in der privaten Vermögensverwaltung. Seit 2022 in Frankfurt ansässig.',
+        'contact.eyebrow':     'Kontakt',
+        'contact.heading':     'Anfragen ausschließlich<br />nach Vereinbarung.',
+        'contact.office.label':'Büro',
+        'contact.office.value':'Frankfurt am Main, Deutschland',
+        'contact.tel.label':   'Telefon',
+        'contact.tel.value':   '+49 [wird ergänzt]',
+        'contact.email.label': 'E-Mail',
+        'contact.disclaimer':  'Wir antworten ausschließlich auf qualifizierte Anfragen von potenziellen Mandantenfamilien und deren Beratern. Unaufgeforderte Kontaktaufnahmen oder Produktanfragen werden nicht berücksichtigt.',
+        'footer.copy':         '© 2026 von Halberg Family Office. Alle Rechte vorbehalten.',
+        'footer.est':          'Frankfurt am Main — Gegr. 2015',
+        'alt.hero':            'Frankfurter Skyline in der Abenddämmerung',
+        'alt.jt':              'James Thompson',
+      },
+      en: {
+        'nav.home':            'Home',
+        'nav.about':           'About',
+        'nav.team':            'Team',
+        'nav.contact':         'Contact',
+        'hero.tagline':        'Private multi-generational wealth management since 2015',
+        'hero.aum.label':      'Assets Under Management',
+        'hero.aum.value':      '€180 million',
+        'hero.scroll':         'Scroll',
+        'about.eyebrow':       'About',
+        'about.headline':      'Discretion.<br />Independence.<br />Continuity.',
+        'about.p1':            'The von Halberg Family Office is a discreet, independent private family office based in Frankfurt am Main. We provide tailored investment management, portfolio reporting, and family coordination services to a small number of multi-generational families.',
+        'about.p2':            'Our focus is long-term capital preservation with a conservative risk profile.',
+        'about.p3.italic':     'The von Halberg Family Office maintains a deliberately low digital profile to protect the privacy of our client families.',
+        'about.p3.rest':       ' We do not engage in public marketing or active social-media activity.',
+        'about.pillar1.title': 'Capital Preservation',
+        'about.pillar1.body':  'Protecting and growing wealth across generations with a conservative, long-term orientation.',
+        'about.pillar2.title': 'Independence',
+        'about.pillar2.body':  'Fully independent advisory — no proprietary products, no placement fees, no conflicts of interest.',
+        'about.pillar3.title': 'Privacy by Design',
+        'about.pillar3.body':  'Client identities and holdings are never disclosed. Relationships built on absolute confidentiality.',
+        'team.eyebrow':        'Team',
+        'team.heading':        'Leadership',
+        'team.jt.title':       'Managing Director',
+        'team.jt.bio':         'American expat with over 8 years in private wealth management. Relocated to Frankfurt in 2022.',
+        'contact.eyebrow':     'Contact',
+        'contact.heading':     'Enquiries by<br />appointment only.',
+        'contact.office.label':'Office',
+        'contact.office.value':'Frankfurt am Main, Germany',
+        'contact.tel.label':   'Telephone',
+        'contact.tel.value':   '+49 [placeholder – will be added later]',
+        'contact.email.label': 'Electronic Mail',
+        'contact.disclaimer':  'We respond exclusively to qualified enquiries from prospective principal families and their advisers. We do not accept unsolicited third-party introductions or product solicitations.',
+        'footer.copy':         '© 2026 von Halberg Family Office. All rights reserved.',
+        'footer.est':          'Frankfurt am Main — Est. 2015',
+        'alt.hero':            'Frankfurt am Main skyline at dusk',
+        'alt.jt':              'James Thompson',
+      }
+    };
+
+    // ─────────────────────────────────────────────────────
+    // Language state & apply function
+    // ─────────────────────────────────────────────────────
+    let currentLang = 'de';
+
+    function applyLang(lang) {
+      const s = strings[lang];
+
+      // textContent elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (s[key] !== undefined) el.textContent = s[key];
+      });
+
+      // innerHTML elements (for <br /> etc.)
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (s[key] !== undefined) el.innerHTML = s[key];
+      });
+
+      // alt attributes
+      document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+        const key = el.getAttribute('data-i18n-alt');
+        if (s[key] !== undefined) el.setAttribute('alt', s[key]);
+      });
+
+      // Update html lang attr
+      document.documentElement.lang = lang;
+
+      // Update page title & meta description
+      if (lang === 'de') {
+        document.title = 'von Halberg Family Office | Private Vermögensverwaltung – Frankfurt am Main';
+        document.querySelector('meta[name="description"]').setAttribute('content', 'Das von Halberg Family Office ist ein diskretes, unabhängiges privates Family Office mit Sitz in Frankfurt am Main.');
+      } else {
+        document.title = 'von Halberg Family Office | Private Wealth Management – Frankfurt am Main';
+        document.querySelector('meta[name="description"]').setAttribute('content', 'von Halberg Family Office is a discreet, independent private family office based in Frankfurt am Main, providing tailored investment management and family coordination services.');
+      }
+
+      // Update lang button labels (show the OTHER language)
+      const btnLabel = lang === 'de' ? 'EN' : 'DE';
+      document.getElementById('lang-btn').textContent     = btnLabel;
+      document.getElementById('lang-btn-mob').textContent = btnLabel;
+
+      currentLang = lang;
+    }
+
+    function toggleLang() {
+      applyLang(currentLang === 'de' ? 'en' : 'de');
+    }
+
+    document.getElementById('lang-btn').addEventListener('click', toggleLang);
+    document.getElementById('lang-btn-mob').addEventListener('click', () => { toggleLang(); closeMob(); });
+
+
+    // ─────────────────────────────────────────────────────
+    // Navbar scroll behaviour
+    // ─────────────────────────────────────────────────────
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('is-scrolled', window.scrollY > 36);
     }, { passive: true });
 
-    // ── Mobile menu
+
+    // ─────────────────────────────────────────────────────
+    // Mobile menu
+    // ─────────────────────────────────────────────────────
     let mobOpen = false;
     const mobMenu   = document.getElementById('mob-menu');
     const mobToggle = document.getElementById('mob-toggle');
@@ -464,18 +653,21 @@
     mobToggle.addEventListener('click', () => {
       mobOpen = !mobOpen;
       mobMenu.classList.toggle('is-open', mobOpen);
-      hb3.style.width = mobOpen ? '18px' : '12px';
+      hb3.style.width  = mobOpen ? '18px' : '12px';
       hb1.style.opacity = mobOpen ? '0.4' : '0.7';
     });
 
     function closeMob() {
       mobOpen = false;
       mobMenu.classList.remove('is-open');
-      hb3.style.width = '12px';
+      hb3.style.width  = '12px';
       hb1.style.opacity = '0.7';
     }
 
-    // ── Scroll reveal
+
+    // ─────────────────────────────────────────────────────
+    // Scroll reveal
+    // ─────────────────────────────────────────────────────
     const revealEls = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -487,7 +679,7 @@
     }, { threshold: 0.10, rootMargin: '0px 0px -36px 0px' });
     revealEls.forEach(el => io.observe(el));
 
-    // Trigger hero on load
+    // Trigger hero immediately on load
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         document.querySelectorAll('#home .reveal').forEach(el => el.classList.add('visible'));
