@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>von Halberg Family Office | Private Wealth Management – Frankfurt am Main</title>
+  <meta name="description" content="von Halberg Family Office is a discreet, independent private family office based in Frankfurt am Main, providing tailored investment management and family coordination services." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.svg" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:        '#0A2533',
+            'navy-mid':  '#0e3044',
+            gold:        '#D4AF77',
+            'gold-dim':  '#9a7d4a',
+            'grey-bg':   '#F8F9FA',
+            'grey-mid':  '#E9ECEF',
+            'grey-text': '#6C757D',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    /* ── Navbar ────────────────────────────────────── */
+    #navbar {
+      transition: background 0.45s ease, box-shadow 0.45s ease;
+      will-change: background;
+    }
+    #navbar.is-scrolled {
+      background: rgba(10, 37, 51, 0.90) !important;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(212, 175, 119, 0.14);
+    }
+
+    /* ── Nav links ─────────────────────────────────── */
+    .nav-link {
+      position: relative;
+      color: rgba(248, 249, 250, 0.65);
+      font-size: 0.69rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 400;
+      transition: color 0.25s;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -4px;
+      width: 0; height: 1px;
+      background: #D4AF77;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover        { color: #D4AF77; }
+    .nav-link:hover::after { width: 100%; }
+
+    /* ── Hero overlay ──────────────────────────────── */
+    .hero-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(10, 37, 51, 0.68)  0%,
+        rgba(10, 37, 51, 0.50) 45%,
+        rgba(10, 37, 51, 0.82) 100%
+      );
+    }
+
+    /* ── Gold rule ─────────────────────────────────── */
+    .g-rule {
+      width: 36px;
+      height: 1px;
+      background: #D4AF77;
+    }
+
+    /* ── Section eyebrow ───────────────────────────── */
+    .eyebrow {
+      font-size: 0.63rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: #D4AF77;
+      font-weight: 500;
+    }
+
+    /* ── Pillar cards ──────────────────────────────── */
+    .pillar {
+      border-top: 1px solid rgba(212, 175, 119, 0.25);
+      transition: border-color 0.3s;
+    }
+    .pillar:hover { border-color: rgba(212, 175, 119, 0.65); }
+
+    /* ── Divider ───────────────────────────────────── */
+    .g-divider {
+      border: none;
+      border-top: 1px solid rgba(212, 175, 119, 0.15);
+    }
+
+    /* ── Team card ─────────────────────────────────── */
+    .team-card {
+      border: 1px solid rgba(212, 175, 119, 0.18);
+      transition: border-color 0.35s;
+    }
+    .team-card:hover { border-color: rgba(212, 175, 119, 0.45); }
+
+    /* ── Contact links ─────────────────────────────── */
+    .c-link {
+      color: rgba(248, 249, 250, 0.65);
+      transition: color 0.25s;
+    }
+    .c-link:hover { color: #D4AF77; }
+
+    /* ── Mobile menu ───────────────────────────────── */
+    #mob-menu {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.35s ease, opacity 0.35s ease;
+    }
+    #mob-menu.is-open {
+      max-height: 280px;
+      opacity: 1;
+    }
+
+    /* ── Scroll fade-in ────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-d1 { transition-delay: 0.10s; }
+    .reveal-d2 { transition-delay: 0.22s; }
+    .reveal-d3 { transition-delay: 0.34s; }
+  </style>
+</head>
+
+<body class="bg-grey-bg text-navy font-sans">
+
+  <!-- ══════════════════════════════════════════════════════
+       STICKY NAVBAR
+  ═══════════════════════════════════════════════════════ -->
+  <nav id="navbar" class="fixed inset-x-0 top-0 z-50 bg-transparent">
+    <div class="max-w-6xl mx-auto px-6 lg:px-10">
+      <div class="flex items-center justify-between h-16 lg:h-[4.5rem]">
+
+        <!-- Wordmark -->
+        <a href="#home" class="group flex flex-col leading-none select-none">
+          <span class="text-white font-light tracking-[0.2em] text-[0.9rem] lg:text-[1rem] transition-opacity group-hover:opacity-75">
+            von Halberg
+          </span>
+          <span class="text-gold font-light tracking-[0.26em] text-[0.58rem] mt-0.5 transition-opacity group-hover:opacity-75">
+            FAMILY OFFICE
+          </span>
+        </a>
+
+        <!-- Desktop links -->
+        <ul class="hidden md:flex items-center gap-9">
+          <li><a href="#home"    class="nav-link">Home</a></li>
+          <li><a href="#about"   class="nav-link">About</a></li>
+          <li><a href="#team"    class="nav-link">Team</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <!-- Hamburger -->
+        <button id="mob-toggle" aria-label="Open menu"
+          class="md:hidden p-2 flex flex-col gap-[5px] group">
+          <span id="hb1" class="block w-[18px] h-px bg-white/70 transition-all group-hover:bg-gold"></span>
+          <span id="hb2" class="block w-[18px] h-px bg-white/70 transition-all group-hover:bg-gold"></span>
+          <span id="hb3" class="block w-[12px] h-px bg-white/70 transition-all group-hover:bg-gold"></span>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile dropdown -->
+    <div id="mob-menu" class="md:hidden bg-navy border-t border-white/5">
+      <ul class="px-6 py-5 space-y-5">
+        <li><a href="#home"    class="nav-link block" onclick="closeMob()">Home</a></li>
+        <li><a href="#about"   class="nav-link block" onclick="closeMob()">About</a></li>
+        <li><a href="#team"    class="nav-link block" onclick="closeMob()">Team</a></li>
+        <li><a href="#contact" class="nav-link block" onclick="closeMob()">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════════════ -->
+  <section id="home" class="relative min-h-screen flex flex-col justify-end pb-24 lg:pb-36 overflow-hidden">
+
+    <!-- Frankfurt skyline at dusk -->
+    <div class="absolute inset-0 bg-navy">
+      <img
+        src="https://images.unsplash.com/photo-1534430480872-3498386e7856?auto=format&fit=crop&w=1920&q=80"
+        alt="Frankfurt am Main skyline at dusk"
+        class="w-full h-full object-cover opacity-[0.42]"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+    <div class="absolute inset-0 hero-overlay"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-6xl mx-auto px-6 lg:px-10 w-full">
+      <div class="reveal max-w-xl">
+
+        <p class="eyebrow mb-7">Frankfurt am Main</p>
+
+        <h1 class="font-light leading-[1.15] mb-7 text-white">
+          <span class="block text-[2.2rem] sm:text-[2.8rem] lg:text-[3.4rem] tracking-[0.04em]">von Halberg</span>
+          <span class="block text-[2.2rem] sm:text-[2.8rem] lg:text-[3.4rem] tracking-[0.04em] text-gold">Family Office</span>
+        </h1>
+
+        <div class="g-rule mb-7"></div>
+
+        <p class="text-white/65 font-light text-[0.9rem] sm:text-base tracking-wide leading-relaxed mb-12 max-w-sm">
+          Private multi-generational wealth management since 2015
+        </p>
+
+        <!-- AUM -->
+        <div class="inline-block border-t border-gold/30 pt-5 pr-12 hover:border-gold/60 transition-colors duration-300">
+          <p class="text-gold/55 text-[0.58rem] tracking-[0.24em] uppercase mb-2">Assets Under Management</p>
+          <p class="text-white font-light text-[1.7rem] sm:text-[2rem] tracking-[0.03em]">€180 million</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-30 pointer-events-none">
+      <span class="text-white text-[0.55rem] tracking-[0.28em] uppercase">Scroll</span>
+      <div class="w-px h-8 bg-white/50"></div>
+    </div>
+
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════════════════════ -->
+  <section id="about" class="bg-grey-bg py-24 lg:py-36">
+    <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+      <!-- Heading row -->
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-20 lg:mb-28">
+
+        <div class="lg:col-span-4 reveal">
+          <p class="eyebrow mb-5">About</p>
+          <div class="g-rule mb-6"></div>
+          <h2 class="text-navy font-light text-[1.6rem] lg:text-[2rem] leading-snug tracking-wide">
+            Discretion.<br />Independence.<br />Continuity.
+          </h2>
+        </div>
+
+        <div class="lg:col-span-8 reveal space-y-6 reveal-d1">
+
+          <p class="text-navy/70 font-light text-[0.975rem] lg:text-[1.05rem] leading-[1.85]">
+            The von Halberg Family Office is a discreet, independent private family office based in Frankfurt am Main. We provide tailored investment management, portfolio reporting, and family coordination services to a small number of multi-generational families.
+          </p>
+
+          <p class="text-navy/70 font-light text-[0.975rem] lg:text-[1.05rem] leading-[1.85]">
+            Our focus is long-term capital preservation with a conservative risk profile.
+          </p>
+
+          <hr class="g-divider" />
+
+          <p class="text-navy/70 font-light text-[0.975rem] lg:text-[1.05rem] leading-[1.85]">
+            <em class="text-gold-dim not-italic" style="color:#8c7143; font-style: italic; font-weight: 300;">The von Halberg Family Office maintains a deliberately low digital profile to protect the privacy of our client families.</em>
+            <span class="text-navy/70"> We do not engage in public marketing or active social-media activity.</span>
+          </p>
+
+        </div>
+      </div>
+
+      <!-- Pillar grid -->
+      <div class="grid sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-grey-mid border border-grey-mid rounded overflow-hidden">
+
+        <div class="pillar bg-white px-8 py-10 reveal">
+          <p class="text-gold text-[0.58rem] tracking-[0.28em] uppercase mb-3">01</p>
+          <h3 class="text-navy font-light text-[1.05rem] tracking-wide mb-3">Capital Preservation</h3>
+          <p class="text-grey-text font-light text-[0.85rem] leading-relaxed">
+            Protecting and growing wealth across generations with a conservative, long-term orientation.
+          </p>
+        </div>
+
+        <div class="pillar bg-white px-8 py-10 reveal reveal-d1">
+          <p class="text-gold text-[0.58rem] tracking-[0.28em] uppercase mb-3">02</p>
+          <h3 class="text-navy font-light text-[1.05rem] tracking-wide mb-3">Independence</h3>
+          <p class="text-grey-text font-light text-[0.85rem] leading-relaxed">
+            Fully independent advisory — no proprietary products, no placement fees, no conflicts of interest.
+          </p>
+        </div>
+
+        <div class="pillar bg-white px-8 py-10 reveal reveal-d2">
+          <p class="text-gold text-[0.58rem] tracking-[0.28em] uppercase mb-3">03</p>
+          <h3 class="text-navy font-light text-[1.05rem] tracking-wide mb-3">Privacy by Design</h3>
+          <p class="text-grey-text font-light text-[0.85rem] leading-relaxed">
+            Client identities and holdings are never disclosed. Relationships built on absolute confidentiality.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       TEAM
+  ═══════════════════════════════════════════════════════ -->
+  <section id="team" class="bg-navy py-24 lg:py-36">
+    <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+      <div class="mb-14 reveal">
+        <p class="eyebrow mb-5">Team</p>
+        <div class="g-rule mb-6"></div>
+        <h2 class="text-white font-light text-[1.6rem] lg:text-[2rem] tracking-wide leading-snug">
+          Leadership
+        </h2>
+      </div>
+
+      <!-- Card -->
+      <div class="reveal reveal-d1 max-w-2xl">
+        <div class="team-card rounded p-8 lg:p-10 relative overflow-hidden">
+
+          <!-- Subtle accent -->
+          <div class="absolute -top-8 -right-8 w-36 h-36 rounded-full bg-gold/[0.04] pointer-events-none"></div>
+
+          <div class="flex items-start gap-6">
+
+            <!-- Headshot -->
+            <div class="flex-shrink-0 w-[4.5rem] h-[4.5rem] rounded-full overflow-hidden border border-gold/30 hover:border-gold/60 transition-colors duration-300">
+              <img src="james-thompson.jpg" alt="James Thompson" class="w-full h-full object-cover object-top" />
+            </div>
+
+            <div>
+              <h3 class="text-white font-light text-[1.15rem] tracking-wide mb-1">James Thompson</h3>
+              <p class="eyebrow mb-5">Managing Director</p>
+              <p class="text-white/55 font-light text-[0.875rem] leading-relaxed max-w-md">
+                American expat with over 8 years in private wealth management. Relocated to Frankfurt in 2022.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       CONTACT
+  ═══════════════════════════════════════════════════════ -->
+  <section id="contact" class="bg-grey-bg py-24 lg:py-36">
+    <div class="max-w-6xl mx-auto px-6 lg:px-10">
+
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+
+        <!-- Left -->
+        <div class="lg:col-span-4 reveal">
+          <p class="eyebrow mb-5">Contact</p>
+          <div class="g-rule mb-6"></div>
+          <h2 class="text-navy font-light text-[1.6rem] lg:text-[2rem] tracking-wide leading-snug max-w-[14rem]">
+            Enquiries by appointment only.
+          </h2>
+        </div>
+
+        <!-- Right -->
+        <div class="lg:col-span-8 reveal reveal-d1 space-y-9">
+
+          <div>
+            <p class="eyebrow mb-2">Office</p>
+            <p class="text-navy font-light text-[0.95rem]">Frankfurt am Main, Germany</p>
+          </div>
+
+          <hr class="g-divider" />
+
+          <div>
+            <p class="eyebrow mb-2">Telephone</p>
+            <p class="text-navy/40 font-light text-[0.95rem] italic">
+              +49 [placeholder – will be added later]
+            </p>
+          </div>
+
+          <hr class="g-divider" />
+
+          <div>
+            <p class="eyebrow mb-2">Electronic Mail</p>
+            <a href="mailto:info@vonhalbergfamilyoffice.de"
+               class="c-link font-light text-[0.95rem] inline-block text-white/70">
+              info@vonhalbergfamilyoffice.de
+            </a>
+          </div>
+
+          <hr class="g-divider" />
+
+          <p class="text-grey-text font-light text-[0.85rem] leading-relaxed max-w-md">
+            We respond exclusively to qualified enquiries from prospective principal families and their advisers. We do not accept unsolicited third-party introductions or product solicitations.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════ -->
+  <footer class="bg-navy border-t border-white/[0.06] py-8">
+    <div class="max-w-6xl mx-auto px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-3">
+
+      <p class="text-white/25 font-light text-[0.7rem] tracking-widest">
+        &copy; 2026 von Halberg Family Office. All rights reserved.
+      </p>
+
+      <p class="text-gold/25 font-light text-[0.58rem] tracking-[0.22em] uppercase">
+        Frankfurt am Main &mdash; Est. 2015
+      </p>
+
+    </div>
+  </footer>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SCRIPTS
+  ═══════════════════════════════════════════════════════ -->
+  <script>
+    // ── Navbar scroll behaviour
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('is-scrolled', window.scrollY > 36);
+    }, { passive: true });
+
+    // ── Mobile menu
+    let mobOpen = false;
+    const mobMenu   = document.getElementById('mob-menu');
+    const mobToggle = document.getElementById('mob-toggle');
+    const hb1 = document.getElementById('hb1');
+    const hb3 = document.getElementById('hb3');
+
+    mobToggle.addEventListener('click', () => {
+      mobOpen = !mobOpen;
+      mobMenu.classList.toggle('is-open', mobOpen);
+      hb3.style.width = mobOpen ? '18px' : '12px';
+      hb1.style.opacity = mobOpen ? '0.4' : '0.7';
+    });
+
+    function closeMob() {
+      mobOpen = false;
+      mobMenu.classList.remove('is-open');
+      hb3.style.width = '12px';
+      hb1.style.opacity = '0.7';
+    }
+
+    // ── Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.10, rootMargin: '0px 0px -36px 0px' });
+    revealEls.forEach(el => io.observe(el));
+
+    // Trigger hero on load
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.querySelectorAll('#home .reveal').forEach(el => el.classList.add('visible'));
+      }, 180);
+    });
+  </script>
+
+</body>
+</html>
+<!-- Ready to upload to vonhalbergfamilyoffice.de -->

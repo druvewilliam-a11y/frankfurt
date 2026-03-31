@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="300" height="300">
+  <!-- Background -->
+  <rect width="64" height="64" rx="5" fill="#F8F9FA"/>
+
+  <!-- Subtle gold border on the tile itself -->
+  <rect width="64" height="64" rx="5" fill="none" stroke="#D4AF77" stroke-width="1.2" opacity="0.55"/>
+
+  <!-- vH monogram: gold outline first (paint-order trick), then navy fill -->
+  <text
+    x="32" y="45"
+    font-family="Georgia, 'Book Antiqua', 'Palatino Linotype', Palatino, serif"
+    font-size="34"
+    font-weight="400"
+    text-anchor="middle"
+    letter-spacing="-0.5"
+    fill="#0A2533"
+    stroke="#D4AF77"
+    stroke-width="1.0"
+    paint-order="stroke fill"
+  >vH</text>
+</svg>
