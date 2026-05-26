@@ -134,29 +134,61 @@
     (function () {
       const body = document.body;
       const buttons = document.querySelectorAll('[data-lang-switch]');
+      const validLanguages = { de: true, en: true };
+
       const setLang = (lang) => {
+        if (!validLanguages[lang]) {
+          return;
+        }
         body.setAttribute('data-lang', lang);
         document.documentElement.setAttribute('lang', lang);
+
         buttons.forEach((button) => {
           const isActive = button.dataset.lang === lang;
           button.classList.toggle('is-active', isActive);
           button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
         });
+
         try {
           localStorage.setItem('vhfo-language', lang);
         } catch (error) {
           void error;
         }
+
+        try {
+          const url = new URL(window.location.href);
+          url.searchParams.set('lang', lang);
+          window.history.replaceState({}, '', url);
+        } catch (error) {
+          void error;
+        }
       };
+
       buttons.forEach((button) => {
-        button.addEventListener('click', () => setLang(button.dataset.lang));
+        button.addEventListener('click', () => {
+          setLang(button.dataset.lang);
+        });
       });
-      const initial = localStorage.getItem('vhfo-language');
-      if (initial === 'en' || initial === 'de') {
-        setLang(initial);
+
+      let initial = 'de';
+      try {
+        const paramLang = new URLSearchParams(window.location.search).get('lang');
+        if (paramLang) {
+          initial = paramLang;
+        } else {
+          const savedLang = localStorage.getItem('vhfo-language');
+          if (savedLang) {
+            initial = savedLang;
+          }
+        }
+      } catch (error) {
+        void error;
       }
+
+      setLang(initial);
     })();
   </script>
 </body>
 </html>
+
 
