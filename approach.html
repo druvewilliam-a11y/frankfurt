@@ -4,19 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex,nofollow" />
-  <title>Investment Focus | von Halberg Private Investment Office</title>
+  <title>Ansatz | von Halberg Family Office</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body data-lang="de">
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html">von Halberg Private Investment Office</a>
+      <a class="brand" href="index.html">von Halberg Family Office</a>
+      <div class="lang-switch" role="group" aria-label="Sprachauswahl">
+        <button type="button" data-lang-switch="de" class="is-active" aria-pressed="true">DE</button>
+        <span class="separator">|</span>
+        <button type="button" data-lang-switch="en" aria-pressed="false">EN</button>
+      </div>
       <nav aria-label="Hauptnavigation" class="site-nav">
-        <a href="index.html">Startseite</a>
-        <a href="about.html">Über uns</a>
-        <a href="approach.html">Investment Focus</a>
-        <a href="contact.html">Kontakt</a>
+        <a href="index.html"><span class="lang-de">Startseite</span><span class="lang-en">Home</span></a>
+        <a href="about.html"><span class="lang-de">Über uns</span><span class="lang-en">About</span></a>
+        <a href="approach.html"><span class="lang-de">Ansatz</span><span class="lang-en">Approach</span></a>
+        <a href="contact.html"><span class="lang-de">Kontakt</span><span class="lang-en">Contact</span></a>
       </nav>
     </div>
   </header>
@@ -24,44 +29,80 @@
   <main>
     <section class="section">
       <div class="container">
-        <h1>Investment Focus</h1>
-
+        <h1>
+          <span class="lang-de">Ansatz</span>
+          <span class="lang-en">Approach</span>
+        </h1>
         <article class="focus-item">
-          <h2>01 Fundamentale Analyse</h2>
-          <p>Analyse von Geschäftsmodellen, Finanzberichten, Wettbewerbspositionen und langfristigen Werttreibern.</p>
+          <h2>
+            <span class="lang-de">Fundamentale Analyse</span>
+            <span class="lang-en">Fundamental Research</span>
+          </h2>
+          <p>
+            <span class="lang-de">Analyse von Geschäftsmodellen, Finanzberichten, Wettbewerbspositionen und langfristigen Werttreibern.</span>
+            <span class="lang-en">Analysis of business models, financial statements, competitive positioning and long-term value drivers.</span>
+          </p>
         </article>
 
         <article class="focus-item">
-          <h2>02 Bewertung</h2>
-          <p>Disziplinierte Bewertung börsennotierter Unternehmen durch DCF-Modelle, Vergleichsunternehmen und
-            Szenarioanalysen.</p>
+          <h2>
+            <span class="lang-de">Bewertung</span>
+            <span class="lang-en">Valuation</span>
+          </h2>
+          <p>
+            <span class="lang-de">Disziplinierte Bewertung börsennotierter Unternehmen durch DCF-Modelle, Vergleichsunternehmen und Szenarioanalysen.</span>
+            <span class="lang-en">Disciplined valuation of listed companies through DCF models, comparable companies and scenario analysis.</span>
+          </p>
         </article>
 
         <article class="focus-item">
-          <h2>03 Portfolio Review</h2>
-          <p>Interne Dokumentation, Marktbeobachtung und strukturierte Überprüfung ausgewählter Beteiligungen.</p>
+          <h2>Portfolio Review</h2>
+          <p>
+            <span class="lang-de">Interne Dokumentation, Marktbeobachtung und strukturierte Überprüfung ausgewählter Beteiligungen.</span>
+            <span class="lang-en">Internal documentation, market monitoring and structured review of selected holdings.</span>
+          </p>
         </article>
-
-        <div class="principles">
-          <h2>Prinzipien</h2>
-          <ul>
-            <li><strong>Diskretion:</strong> Ein zurückhaltendes öffentliches Profil schützt die Privatsphäre der beteiligten
-              Personen.</li>
-            <li><strong>Unabhängigkeit:</strong> Die Analyse folgt keinem Produktvertrieb und keiner öffentlichen
-              Vermarktung.</li>
-            <li><strong>Langfristigkeit:</strong> Der Fokus liegt auf Kapitalerhalt, Qualität und nachhaltiger
-              Wertentwicklung über längere Zeiträume.</li>
-          </ul>
-        </div>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="container">
-      <p>© 2026 von Halberg Private Investment Office. Fiktive Website für ein Romanmanuskript.</p>
+      <p>© 2026 von Halberg Family Office. Frankfurt am Main.</p>
+      <p class="legal-nav">
+        <a href="impressum.html"><span class="lang-de">Impressum</span><span class="lang-en">Imprint</span></a>
+        <span class="separator">|</span>
+        <a href="privacy.html"><span class="lang-de">Datenschutz</span><span class="lang-en">Privacy</span></a>
+      </p>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      const body = document.body;
+      const buttons = document.querySelectorAll('[data-lang-switch]');
+      const setLang = (lang) => {
+        body.setAttribute('data-lang', lang);
+        document.documentElement.setAttribute('lang', lang);
+        buttons.forEach((button) => {
+          const isActive = button.dataset.lang === lang;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        try {
+          localStorage.setItem('vhfo-language', lang);
+        } catch (error) {
+          void error;
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => setLang(button.dataset.lang));
+      });
+      const initial = localStorage.getItem('vhfo-language');
+      if (initial === 'en' || initial === 'de') {
+        setLang(initial);
+      }
+    })();
+  </script>
 </body>
 </html>
-

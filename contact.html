@@ -4,19 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex,nofollow" />
-  <title>Kontakt | von Halberg Private Investment Office</title>
+  <title>Kontakt | von Halberg Family Office</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body data-lang="de">
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html">von Halberg Private Investment Office</a>
+      <a class="brand" href="index.html">von Halberg Family Office</a>
+      <div class="lang-switch" role="group" aria-label="Sprachauswahl">
+        <button type="button" data-lang-switch="de" class="is-active" aria-pressed="true">DE</button>
+        <span class="separator">|</span>
+        <button type="button" data-lang-switch="en" aria-pressed="false">EN</button>
+      </div>
       <nav aria-label="Hauptnavigation" class="site-nav">
-        <a href="index.html">Startseite</a>
-        <a href="about.html">Über uns</a>
-        <a href="approach.html">Investment Focus</a>
-        <a href="contact.html">Kontakt</a>
+        <a href="index.html"><span class="lang-de">Startseite</span><span class="lang-en">Home</span></a>
+        <a href="about.html"><span class="lang-de">Über uns</span><span class="lang-en">About</span></a>
+        <a href="approach.html"><span class="lang-de">Ansatz</span><span class="lang-en">Approach</span></a>
+        <a href="contact.html"><span class="lang-de">Kontakt</span><span class="lang-en">Contact</span></a>
       </nav>
     </div>
   </header>
@@ -24,19 +29,63 @@
   <main>
     <section class="section">
       <div class="container">
-        <h1>Kontakt</h1>
-        <p>Anfragen nur nach vorheriger Vereinbarung.</p>
-        <p><strong>Büro:</strong> Frankfurt am Main, Deutschland</p>
-        <p><strong>E-Mail:</strong> <a href="mailto:fictional-contact@example.com">fictional-contact@example.com</a></p>
+        <h1>
+          <span class="lang-de">Kontakt</span>
+          <span class="lang-en">Contact</span>
+        </h1>
+        <p>
+          <span class="lang-de">Anfragen ausschließlich nach vorheriger Vereinbarung.</span>
+          <span class="lang-en">Inquiries by prior arrangement only.</span>
+        </p>
+        <p>
+          <span class="lang-de"><strong>Büro:</strong> Frankfurt am Main, Deutschland</span>
+          <span class="lang-en"><strong>Office:</strong> Frankfurt am Main, Germany</span>
+        </p>
+        <p>
+          <span class="lang-de"><strong>E-Mail:</strong> <a href="mailto:info@vonhalbergfamilyoffice.de">info@vonhalbergfamilyoffice.de</a></span>
+          <span class="lang-en"><strong>Email:</strong> <a href="mailto:info@vonhalbergfamilyoffice.de">info@vonhalbergfamilyoffice.de</a></span>
+        </p>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="container">
-      <p>© 2026 von Halberg Private Investment Office. Fiktive Website für ein Romanmanuskript.</p>
+      <p>© 2026 von Halberg Family Office. Frankfurt am Main.</p>
+      <p class="legal-nav">
+        <a href="impressum.html"><span class="lang-de">Impressum</span><span class="lang-en">Imprint</span></a>
+        <span class="separator">|</span>
+        <a href="privacy.html"><span class="lang-de">Datenschutz</span><span class="lang-en">Privacy</span></a>
+      </p>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      const body = document.body;
+      const buttons = document.querySelectorAll('[data-lang-switch]');
+      const setLang = (lang) => {
+        body.setAttribute('data-lang', lang);
+        document.documentElement.setAttribute('lang', lang);
+        buttons.forEach((button) => {
+          const isActive = button.dataset.lang === lang;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        try {
+          localStorage.setItem('vhfo-language', lang);
+        } catch (error) {
+          void error;
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => setLang(button.dataset.lang));
+      });
+      const initial = localStorage.getItem('vhfo-language');
+      if (initial === 'en' || initial === 'de') {
+        setLang(initial);
+      }
+    })();
+  </script>
 </body>
 </html>
-

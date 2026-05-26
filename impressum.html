@@ -4,38 +4,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex,nofollow" />
-  <title>Impressum | von Halberg Private Investment Office</title>
+  <title>Impressum | von Halberg Family Office</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body data-lang="de">
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html">von Halberg Private Investment Office</a>
+      <a class="brand" href="index.html">von Halberg Family Office</a>
+      <div class="lang-switch" role="group" aria-label="Sprachauswahl">
+        <button type="button" data-lang-switch="de" class="is-active" aria-pressed="true">DE</button>
+        <span class="separator">|</span>
+        <button type="button" data-lang-switch="en" aria-pressed="false">EN</button>
+      </div>
       <nav aria-label="Hauptnavigation" class="site-nav">
-        <a href="index.html">Startseite</a>
-        <a href="about.html">Über uns</a>
-        <a href="approach.html">Investment Focus</a>
-        <a href="contact.html">Kontakt</a>
+        <a href="index.html"><span class="lang-de">Startseite</span><span class="lang-en">Home</span></a>
+        <a href="about.html"><span class="lang-de">Über uns</span><span class="lang-en">About</span></a>
+        <a href="approach.html"><span class="lang-de">Ansatz</span><span class="lang-en">Approach</span></a>
+        <a href="contact.html"><span class="lang-de">Kontakt</span><span class="lang-en">Contact</span></a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="section">
+    <section class="section muted">
       <div class="container">
-        <h1>Impressum</h1>
+        <h1>
+          <span class="lang-de">Impressum</span>
+          <span class="lang-en">Imprint</span>
+        </h1>
         <p>
-          Diese Website ist ein reines fiktionales Requisit für ein Romanmanuskript. Sie stellt keine reale geschäftliche
-          Geschäftspräsenz oder regulierte Finanzdienstleistung dar.
+          <span class="lang-de">Diese Seite ist ein fiktives Requisit für ein Romanmanuskript. Sie dient nur der Erzählumgebung und stellt keinen realen Geschäftsbetrieb oder registrierte Marktteilnahme dar.</span>
+          <span class="lang-en">This page is a fictional prop for a manuscript. It is used as narrative context only and does not represent a real operating business or registered market activity.</span>
         </p>
         <p>
-          Es werden keine echten geschäftsrechtlichen Daten wie Registrierungsnummern, realistische Kontaktadressen,
-          Handelsregisterangaben oder persönliche Mitarbeiterdaten veröffentlicht.
+          <span class="lang-de">Es werden keine echten Handelsregisterangaben, keine realen Adressen, keine behördlichen Rollen und keine personenbezogenen Daten von Mitarbeitenden veröffentlicht.</span>
+          <span class="lang-en">No real registration details, actual addresses, regulatory claims, or identifiable employee details are shown.</span>
         </p>
         <p>
-          <strong>Fiktionale Kontaktadresse:</strong> <a href="mailto:fictional-contact@example.com">fictional-contact@example.com</a><br />
-          <strong>Ort:</strong> Frankfurt am Main, Deutschland (fiktional)
+          <span class="lang-de"><strong>E-Mail:</strong> <a href="mailto:info@vonhalbergfamilyoffice.de">info@vonhalbergfamilyoffice.de</a></span>
+          <span class="lang-en"><strong>Email:</strong> <a href="mailto:info@vonhalbergfamilyoffice.de">info@vonhalbergfamilyoffice.de</a></span>
         </p>
       </div>
     </section>
@@ -43,9 +51,41 @@
 
   <footer>
     <div class="container">
-      <p>© 2026 von Halberg Private Investment Office. Fiktive Website für ein Romanmanuskript.</p>
+      <p>© 2026 von Halberg Family Office. Frankfurt am Main.</p>
+      <p class="legal-nav">
+        <a href="impressum.html"><span class="lang-de">Impressum</span><span class="lang-en">Imprint</span></a>
+        <span class="separator">|</span>
+        <a href="privacy.html"><span class="lang-de">Datenschutz</span><span class="lang-en">Privacy</span></a>
+      </p>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      const body = document.body;
+      const buttons = document.querySelectorAll('[data-lang-switch]');
+      const setLang = (lang) => {
+        body.setAttribute('data-lang', lang);
+        document.documentElement.setAttribute('lang', lang);
+        buttons.forEach((button) => {
+          const isActive = button.dataset.lang === lang;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        try {
+          localStorage.setItem('vhfo-language', lang);
+        } catch (error) {
+          void error;
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => setLang(button.dataset.lang));
+      });
+      const initial = localStorage.getItem('vhfo-language');
+      if (initial === 'en' || initial === 'de') {
+        setLang(initial);
+      }
+    })();
+  </script>
 </body>
 </html>
-
