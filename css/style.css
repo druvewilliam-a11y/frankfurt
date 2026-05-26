@@ -79,24 +79,23 @@ body {
   margin-left: auto;
 }
 
-.lang-switch button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
+.lang-link {
   color: var(--muted);
-  font: inherit;
+  text-decoration: none;
+  padding: 0;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: color 0.2s ease;
+  line-height: 1;
 }
 
-.lang-switch button:hover,
-.lang-switch button:focus {
+.lang-link:hover,
+.lang-link:focus {
   color: var(--text);
 }
 
-.lang-switch button.is-active {
+.lang-link.is-active,
+.lang-link[aria-current='page'] {
   color: var(--text);
   font-weight: 600;
 }

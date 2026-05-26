@@ -12,10 +12,10 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html">von Halberg Family Office</a>
-      <div class="lang-switch" role="group" aria-label="Sprachauswahl">
-        <button type="button" data-lang-switch="de" class="is-active" aria-pressed="true">DE</button>
+      <div class="lang-switch" role="navigation" aria-label="Sprachauswahl">
+        <a href="?lang=de" class="lang-link" data-lang="de">DE</a>
         <span class="separator">|</span>
-        <button type="button" data-lang-switch="en" aria-pressed="false">EN</button>
+        <a href="?lang=en" class="lang-link" data-lang="en">EN</a>
       </div>
       <nav aria-label="Hauptnavigation" class="site-nav">
         <a href="index.html"><span class="lang-de">Startseite</span><span class="lang-en">Home</span></a>
@@ -132,60 +132,90 @@
 
   <script>
     (function () {
-      const body = document.body;
-      const buttons = document.querySelectorAll('[data-lang-switch]');
       const validLanguages = { de: true, en: true };
 
-      const setLang = (lang) => {
-        if (!validLanguages[lang]) {
-          return;
-        }
-        body.setAttribute('data-lang', lang);
-        document.documentElement.setAttribute('lang', lang);
-
-        buttons.forEach((button) => {
-          const isActive = button.dataset.lang === lang;
-          button.classList.toggle('is-active', isActive);
-          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-        });
-
+      const getPreferredLanguage = () => {
         try {
-          localStorage.setItem('vhfo-language', lang);
+          const urlLanguage = new URLSearchParams(window.location.search).get('lang');
+          if (validLanguages[urlLanguage]) {
+            return urlLanguage;
+          }
         } catch (error) {
           void error;
         }
 
         try {
-          const url = new URL(window.location.href);
-          url.searchParams.set('lang', lang);
-          window.history.replaceState({}, '', url);
+          const storedLanguage = localStorage.getItem('vhfo-language');
+          if (validLanguages[storedLanguage]) {
+            return storedLanguage;
+          }
+        } catch (error) {
+          void error;
+        }
+
+        return 'de';
+      };
+
+      const syncLanguageLinks = (language) => {
+        document.querySelectorAll('.lang-link').forEach((link) => {
+          const target = new URL(window.location.pathname, window.location.href);
+          target.searchParams.set('lang', link.dataset.lang);
+          link.href = `${target.pathname}${target.search}`;
+
+          const isActive = link.dataset.lang === language;
+          link.classList.toggle('is-active', isActive);
+          link.setAttribute('aria-current', isActive ? 'page' : 'false');
+        });
+      };
+
+      const syncNavigationLinks = (language) => {
+        document.querySelectorAll('.site-nav a, .legal-nav a').forEach((link) => {
+          try {
+            const url = new URL(link.getAttribute('href'), window.location.href);
+            url.searchParams.set('lang', language);
+            link.href = `${url.pathname}${url.search}${url.hash}`;
+          } catch (error) {
+            void error;
+          }
+        });
+      };
+
+      const setLanguage = (language) => {
+        document.body.setAttribute('data-lang', language);
+        document.documentElement.setAttribute('lang', language);
+
+        syncLanguageLinks(language);
+        syncNavigationLinks(language);
+
+        try {
+          localStorage.setItem('vhfo-language', language);
         } catch (error) {
           void error;
         }
       };
 
-      buttons.forEach((button) => {
-        button.addEventListener('click', () => {
-          setLang(button.dataset.lang);
+      setLanguage(getPreferredLanguage());
+
+      document.querySelectorAll('.lang-switch .lang-link').forEach((link) => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          const selectedLanguage = link.dataset.lang;
+
+          if (!validLanguages[selectedLanguage]) {
+            return;
+          }
+
+          setLanguage(selectedLanguage);
+
+          try {
+            const nextUrl = new URL(window.location.href);
+            nextUrl.searchParams.set('lang', selectedLanguage);
+            window.history.replaceState({}, '', nextUrl);
+          } catch (error) {
+            void error;
+          }
         });
       });
-
-      let initial = 'de';
-      try {
-        const paramLang = new URLSearchParams(window.location.search).get('lang');
-        if (paramLang) {
-          initial = paramLang;
-        } else {
-          const savedLang = localStorage.getItem('vhfo-language');
-          if (savedLang) {
-            initial = savedLang;
-          }
-        }
-      } catch (error) {
-        void error;
-      }
-
-      setLang(initial);
     })();
   </script>
 </body>
