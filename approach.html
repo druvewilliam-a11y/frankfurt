@@ -69,11 +69,6 @@
   <footer>
     <div class="container">
       <p>© 2026 von Halberg Family Office. Frankfurt am Main.</p>
-      <p class="legal-nav">
-        <a href="impressum.html"><span class="lang-de">Impressum</span><span class="lang-en">Imprint</span></a>
-        <span class="separator">|</span>
-        <a href="privacy.html"><span class="lang-de">Datenschutz</span><span class="lang-en">Privacy</span></a>
-      </p>
     </div>
   </footer>
 
@@ -116,7 +111,7 @@
       };
 
       const syncNavigationLinks = (language) => {
-        document.querySelectorAll('.site-nav a, .legal-nav a').forEach((link) => {
+        document.querySelectorAll('.site-nav a').forEach((link) => {
           try {
             const url = new URL(link.getAttribute('href'), window.location.href);
             url.searchParams.set('lang', language);

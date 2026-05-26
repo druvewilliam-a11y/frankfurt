@@ -175,10 +175,6 @@ footer {
   margin-top: 0.4rem;
 }
 
-.legal-nav a {
-  color: inherit;
-}
-
 body[data-lang='de'] .lang-en,
 body[data-lang='en'] .lang-de {
   display: none;
