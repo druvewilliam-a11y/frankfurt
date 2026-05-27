@@ -179,9 +179,21 @@ footer {
   color: inherit;
 }
 
+.lang-en {
+  display: none;
+}
+
+.lang-de {
+  display: inline;
+}
+
 body[data-lang='de'] .lang-en,
 body[data-lang='en'] .lang-de {
   display: none;
+}
+
+body[data-lang='en'] .lang-en {
+  display: inline;
 }
 
 @media (max-width: 640px) {
